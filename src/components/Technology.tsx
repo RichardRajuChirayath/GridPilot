@@ -39,34 +39,22 @@ export const Technology = () => {
                             GridPilot isn't just charger software. It's an infrastructure-first control system that sits between the demand of electric mobility and the physics of the power grid.
                         </p>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {layers.map((layer, i) => (
                                 <motion.div
                                     key={i}
-                                    initial={{ x: -100, opacity: 0, skewX: 10 }}
-                                    whileInView={{ x: 0, opacity: 1, skewX: 0 }}
+                                    initial={{ x: -20, opacity: 0 }}
+                                    whileInView={{ x: 0, opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{
-                                        type: "spring",
-                                        damping: 20,
-                                        stiffness: 100,
-                                        delay: i * 0.15
-                                    }}
-                                    className="flex gap-6 p-6 rounded-[2rem] hover:bg-white/5 border border-transparent hover:border-white/5 transition-all group relative overflow-hidden"
+                                    transition={{ delay: i * 0.1 }}
+                                    className="flex gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors group"
                                 >
-                                    {/* Subtle blueprint scanline for each card */}
-                                    <motion.div
-                                        animate={{ x: ["-100%", "200%"] }}
-                                        transition={{ repeat: Infinity, duration: 3, ease: "linear", delay: i * 0.5 }}
-                                        className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 pointer-events-none"
-                                    />
-
-                                    <div className="shrink-0 w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center text-primary group-hover:glow-primary transition-all duration-300">
-                                        <layer.icon className="w-8 h-8" />
+                                    <div className="shrink-0 w-12 h-12 rounded-xl glass border border-white/10 flex items-center justify-center text-primary group-hover:glow-primary">
+                                        <layer.icon className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-xl mb-1">{layer.name}</h4>
-                                        <p className="text-sm text-foreground/50 leading-relaxed font-medium">{layer.desc}</p>
+                                        <h4 className="font-bold text-lg">{layer.name}</h4>
+                                        <p className="text-sm text-foreground/50">{layer.desc}</p>
                                     </div>
                                 </motion.div>
                             ))}

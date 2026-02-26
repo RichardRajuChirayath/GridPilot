@@ -35,7 +35,6 @@ export const Simulation = () => {
     const [data, setData] = useState<{ time: string; load: number; managedLoad: number }[]>([]);
     const [currentLoad, setCurrentLoad] = useState(0);
     const [savings, setSavings] = useState(0);
-    const [isBlackout, setIsBlackout] = useState(false);
 
     // Generate simulation data based on real-world patterns
     useEffect(() => {
@@ -53,15 +52,6 @@ export const Simulation = () => {
                 managedLoad = Math.min(rawLoad, capacityLimit);
                 // Aggressive ROI ticking
                 setSavings(prev => prev + (rawLoad > capacityLimit ? 142 : 5));
-                setIsBlackout(false);
-            } else {
-                if (rawLoad > TRANSFORMER_MAX) {
-                    // Trigger "Blackout" flicker
-                    if (Math.random() > 0.7) setIsBlackout(true);
-                    else setTimeout(() => setIsBlackout(false), 50);
-                } else {
-                    setIsBlackout(false);
-                }
             }
 
             setCurrentLoad(mode === "managed" ? managedLoad : rawLoad);
@@ -81,26 +71,14 @@ export const Simulation = () => {
     }, [mode, carCount]);
 
     const status = useMemo(() => {
-        if (currentLoad > TRANSFORMER_MAX) return { label: "GRID COLLAPSE", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/50", icon: AlertTriangle };
+        if (currentLoad > TRANSFORMER_MAX) return { label: "CRITICAL FAILURE", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/50", icon: AlertTriangle };
         if (currentLoad > TRANSFORMER_MAX * 0.85) return { label: "GRID STRESS", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/50", icon: Zap };
         return { label: "OPTIMIZED", color: "text-accent", bg: "bg-accent/10", border: "border-accent/50", icon: CheckCircle2 };
     }, [currentLoad]);
 
     return (
-        <section id="simulation" className={`py-24 relative overflow-hidden transition-all duration-75 ${isBlackout ? 'bg-black brightness-200' : 'bg-[#020408]'}`}>
-            {/* Alarm Overlay */}
-            <AnimatePresence>
-                {currentLoad > TRANSFORMER_MAX && mode === "unmanaged" && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: [0, 0.4, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.5 }}
-                        className="fixed inset-0 bg-red-600/20 z-[100] pointer-events-none"
-                    />
-                )}
-            </AnimatePresence>
-
-            <div className={`container mx-auto px-6 transition-transform duration-75 ${currentLoad > TRANSFORMER_MAX ? 'translate-x-[2px] rotate-[-0.1deg]' : ''}`}>
+        <section id="simulation" className="py-24 relative overflow-hidden bg-[#020408]">
+            <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center justify-between mb-16 gap-8">
                     <div className="max-w-2xl">
                         <h2 className="text-accent font-bold uppercase tracking-widest text-xs mb-4">Interactive Stress Test</h2>
