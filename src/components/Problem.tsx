@@ -49,13 +49,19 @@ export const Problem = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="glass p-8 rounded-[2rem] border border-white/5 hover:border-primary/20 transition-all group"
+                            className="glass p-8 rounded-[2rem] border border-white/5 hover:border-primary/20 transition-all group relative overflow-hidden"
                         >
-                            <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
-                                <p.icon className="w-8 h-8 text-foreground group-hover:text-primary transition-colors" />
+                            {/* Thermal Glow Background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-40 group-hover:opacity-0 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="relative z-10">
+                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
+                                    <p.icon className="w-8 h-8 text-foreground group-hover:text-primary transition-colors" />
+                                </div>
+                                <h4 className="text-xl font-bold mb-3">{p.title}</h4>
+                                <p className="text-foreground/50 text-sm leading-relaxed">{p.description}</p>
                             </div>
-                            <h4 className="text-xl font-bold mb-3">{p.title}</h4>
-                            <p className="text-foreground/50 text-sm leading-relaxed">{p.description}</p>
                         </motion.div>
                     ))}
                 </div>

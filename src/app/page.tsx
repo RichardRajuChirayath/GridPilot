@@ -5,11 +5,13 @@ import { Simulation } from "@/components/Simulation";
 import { Solution } from "@/components/Solution";
 import { Technology } from "@/components/Technology";
 import { CTA } from "@/components/CTA";
+import { GridHUD } from "@/components/GridHUD";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background">
       <Navbar />
+      <GridHUD />
       <Hero />
       <Problem />
       <Simulation />

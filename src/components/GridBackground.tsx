@@ -21,15 +21,32 @@ function GridPoints() {
         return [pos, count];
     }, []);
 
+    const mouse = useRef(new THREE.Vector2(0, 0));
+
     useFrame((state) => {
         const t = state.clock.getElapsedTime();
         ref.current.rotation.y = t * 0.05;
-        // Wave effect
+
+        // Update mouse position
+        mouse.current.x = (state.mouse.x * state.viewport.width) / 2;
+        mouse.current.y = (state.mouse.y * -state.viewport.height) / 2; // Invert Y
+
+        // Wave + Magnetic effect
         const array = ref.current.geometry.attributes.position.array as Float32Array;
         for (let i = 0; i < positions.length; i++) {
             const x = array[i * 3];
             const z = array[i * 3 + 2];
-            array[i * 3 + 1] = Math.sin(x * 0.5 + t) * Math.cos(z * 0.5 + t) * 0.5 - 2;
+
+            // Base Wave
+            const wave = Math.sin(x * 0.5 + t) * Math.cos(z * 0.5 + t) * 0.5 - 2;
+
+            // Distance to mouse (X-Z plane approximation since camera is tilted)
+            const dx = x - mouse.current.x;
+            const dz = z - (mouse.current.y * 2 + 5); // Offset to align with tilted camera
+            const dist = Math.sqrt(dx * dx + dz * dz);
+            const attraction = Math.exp(-dist * 0.5) * 1.5;
+
+            array[i * 3 + 1] = wave + attraction;
         }
         ref.current.geometry.attributes.position.needsUpdate = true;
     });
