@@ -3,42 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, BatteryCharging, ShieldCheck, Zap } from "lucide-react";
-import { GridBackground } from "./GridBackground";
 
 export const Hero = () => {
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
-            <GridBackground />
-            {/* Background Glows */}
-            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 blur-[120px] rounded-full animate-pulse-slow" />
-            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/20 blur-[120px] rounded-full animate-pulse-slow" />
-
-            {/* Energy Network Lines */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-                {[...Array(5)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: [0, 1, 0] }}
-                        transition={{
-                            duration: 4 + i,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: i * 2
-                        }}
-                        style={{
-                            position: 'absolute',
-                            top: `${20 + i * 15}%`,
-                            left: 0,
-                            right: 0,
-                            height: '1px',
-                            background: `linear-gradient(90deg, transparent, ${i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)'}, transparent)`,
-                            boxShadow: `0 0 10px ${i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)'}`
-                        }}
-                    />
-                ))}
-            </div>
-
             <div className="container mx-auto px-6 relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

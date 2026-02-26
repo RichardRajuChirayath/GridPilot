@@ -39,7 +39,7 @@ export const Solution = () => {
     ];
 
     return (
-        <section id="solution" className="py-24 bg-primary/5 border-y border-white/5 relative">
+        <section id="solution" className="py-24 border-y border-white/5 relative">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-20">
                     <h2 className="text-accent font-bold uppercase tracking-widest text-sm mb-4">The Platform</h2>

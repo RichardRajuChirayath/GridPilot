@@ -29,7 +29,7 @@ export const Technology = () => {
     ];
 
     return (
-        <section id="technology" className="py-24 bg-background">
+        <section id="technology" className="py-24">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row gap-16 items-center">
                     <div className="flex-1">

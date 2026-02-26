@@ -77,7 +77,7 @@ export const Simulation = () => {
     }, [currentLoad]);
 
     return (
-        <section id="simulation" className="py-24 relative overflow-hidden bg-[#020408]">
+        <section id="simulation" className="py-24 relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center justify-between mb-16 gap-8">
                     <div className="max-w-2xl">
