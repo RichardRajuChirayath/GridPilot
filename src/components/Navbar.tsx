@@ -21,6 +21,7 @@ export const Navbar = () => {
 
             <div className="hidden md:flex items-center gap-8">
                 <Link href="#problem" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">The Problem</Link>
+                <Link href="#simulation" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Simulation</Link>
                 <Link href="#solution" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Solution</Link>
                 <Link href="#technology" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Technology</Link>
                 <Link href="#impact" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Impact</Link>

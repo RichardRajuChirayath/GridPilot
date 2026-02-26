@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Problem } from "@/components/Problem";
 import { Solution } from "@/components/Solution";
 import { Technology } from "@/components/Technology";
+import { Simulation } from "@/components/Simulation";
 import { CTA } from "@/components/CTA";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Problem />
+      <Simulation />
       <Solution />
       <Technology />
       <CTA />
