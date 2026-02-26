@@ -63,33 +63,71 @@ export const Technology = () => {
 
                     <div className="flex-1 relative">
                         <div className="aspect-square glass rounded-[3rem] p-12 border border-white/10 flex items-center justify-center relative overflow-hidden">
-                            {/* Simplified animated diagram placeholder */}
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 opacity-10 pointer-events-none"
-                            >
-                                <div className="absolute inset-0 border-[20px] border-dashed border-primary rounded-full scale-110" />
-                                <div className="absolute inset-0 border-[40px] border-dashed border-secondary rounded-full scale-125" />
-                            </motion.div>
+                            {/* Animated Connection Lines */}
+                            <div className="absolute inset-0 pointer-events-none">
+                                <svg viewBox="0 0 400 400" className="w-full h-full opacity-30">
+                                    <motion.path
+                                        d="M 100 100 L 300 300 M 300 100 L 100 300"
+                                        stroke="var(--color-primary)"
+                                        strokeWidth="2"
+                                        strokeDasharray="10 10"
+                                        animate={{ strokeDashoffset: [0, -100] }}
+                                        transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
+                                    />
+                                    <motion.circle
+                                        r="4"
+                                        fill="var(--color-accent)"
+                                        animate={{
+                                            pathOffset: [0, 1],
+                                            opacity: [0, 1, 0]
+                                        }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                                    >
+                                        <animateMotion path="M 100 100 L 300 300" dur="2s" repeatCount="indefinite" />
+                                    </motion.circle>
+                                    <motion.circle
+                                        r="4"
+                                        fill="var(--color-secondary)"
+                                        animate={{
+                                            pathOffset: [0, 1],
+                                            opacity: [0, 1, 0]
+                                        }}
+                                        transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+                                    >
+                                        <animateMotion path="M 300 100 L 100 300" dur="2.5s" repeatCount="indefinite" />
+                                    </motion.circle>
+                                </svg>
+                            </div>
 
                             <div className="relative z-10 grid grid-cols-2 gap-8 text-center">
-                                <div className="glass p-6 rounded-2xl border border-primary/20 bg-primary/10">
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className="glass p-6 rounded-2xl border border-primary/20 bg-primary/10 shadow-[0_0_30px_rgba(0,229,255,0.1)]"
+                                >
                                     <div className="text-primary font-black text-2xl mb-1 italic">EDGE</div>
                                     <div className="text-[10px] uppercase font-bold opacity-50">Local Control</div>
-                                </div>
-                                <div className="glass p-6 rounded-2xl border border-secondary/20 bg-secondary/10">
+                                </motion.div>
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className="glass p-6 rounded-2xl border border-secondary/20 bg-secondary/10 shadow-[0_0_30px_rgba(112,0,255,0.1)]"
+                                >
                                     <div className="text-secondary font-black text-2xl mb-1 italic">CORE</div>
                                     <div className="text-[10px] uppercase font-bold opacity-50">Orchestration</div>
-                                </div>
-                                <div className="glass p-6 rounded-2xl border border-accent/20 bg-accent/10">
+                                </motion.div>
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className="glass p-6 rounded-2xl border border-accent/20 bg-accent/10 shadow-[0_0_30px_rgba(0,255,163,0.1)]"
+                                >
                                     <div className="text-accent font-black text-2xl mb-1 italic">DATA</div>
                                     <div className="text-[10px] uppercase font-bold opacity-50">Predictions</div>
-                                </div>
-                                <div className="glass p-6 rounded-2xl border border-white/20 bg-white/5">
+                                </motion.div>
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className="glass p-6 rounded-2xl border border-white/20 bg-white/5"
+                                >
                                     <div className="text-white font-black text-2xl mb-1 italic">API</div>
                                     <div className="text-[10px] uppercase font-bold opacity-50">Integration</div>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>

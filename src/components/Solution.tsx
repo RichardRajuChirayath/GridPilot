@@ -54,9 +54,13 @@ export const Solution = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05 }}
-                            className="glass p-10 rounded-[2.5rem] border border-white/5 hover:translate-y-[-5px] transition-all duration-300"
+                            className="glass p-10 rounded-[2.5rem] border border-white/5 hover:translate-y-[-5px] transition-all duration-500 overflow-hidden relative group"
                         >
-                            <div className="bg-primary/20 w-16 h-16 rounded-3xl flex items-center justify-center mb-8 glow-primary">
+                            {/* X-Ray Schematic Background (Visible on Hover) */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] scale-150 rotate-12" />
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 bg-gradient-to-br from-primary/20 via-transparent to-transparent pointer-events-none" />
+
+                            <div className="bg-primary/20 w-16 h-16 rounded-3xl flex items-center justify-center mb-8 glow-primary relative z-10">
                                 <c.icon className="text-primary w-8 h-8" />
                             </div>
                             <h4 className="text-2xl font-bold mb-4">{c.title}</h4>
